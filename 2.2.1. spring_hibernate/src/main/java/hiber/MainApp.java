@@ -22,14 +22,9 @@ public class MainApp {
         Car car4 = new Car("Toyota", 5);
         Car car5 = new Car("Toyota", 5);
 
-        User user1 = new User("User1", "Lastname1", "user1@mail.ru", car1);
-        User user2 = new User("User2", "Lastname2", "user2@mail.ru", car2);
-        User user3 = new User("User3", "Lastname3", "user3@mail.ru", car3);
-
-        userService.add(user1);
-        userService.add(user2);
-        userService.add(user3);
-
+        userService.add(new User("User1", "Lastname1", "user1@mail.ru", car1));
+        userService.add(new User("User2", "Lastname2", "user2@mail.ru", car2));
+        userService.add(new User("User3", "Lastname3", "user3@mail.ru", car3));
         userService.add(new User("User4", "Lastname4", "user4@mail.ru", car4));
         userService.add(new User("User5", "Lastname5", "user5@mail.ru", car5));
 
@@ -42,7 +37,6 @@ public class MainApp {
             System.out.println("Car = " + user.getCar());
             System.out.println();
         }
-
         context.close();
     }
 }

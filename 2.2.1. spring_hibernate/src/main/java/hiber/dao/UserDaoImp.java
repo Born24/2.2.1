@@ -11,31 +11,30 @@ import java.util.List;
 @Repository
 public class UserDaoImp implements UserDao {
 
-    private final SessionFactory sessionFactory;
+   private final SessionFactory sessionFactory;
 
-    @Autowired
-    public UserDaoImp(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
+   @Autowired
+   public UserDaoImp(SessionFactory sessionFactory) {
+      this.sessionFactory = sessionFactory;
+   }
 
-    @Override
-    public void add(User user) {
-        sessionFactory.getCurrentSession().save(user);
-    }
+   @Override
+   public void add(User user) {
+      sessionFactory.getCurrentSession().save(user);
+   }
 
-    @Override
-    public List<User> listUsers() {
-        TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("from User", User.class);
-        return query.getResultList();
-    }
+   @Override
+   public List<User> listUsers() {
+      TypedQuery<User> query=sessionFactory.getCurrentSession().createQuery("from User", User.class);
+      return query.getResultList();
+   }
 
-    @Override
-    public User getUserByCar(String model, int series) {
-        String hql = "FROM User u WHERE u.car.model=:model AND u.car.series=:series";
-        TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery(hql, User.class);
-        query.setParameter("model", model);
-        query.setParameter("series", series);
-
-        return query.getSingleResult();
-    }
+   @Override
+   public User getUserByCar(String model, int series) {
+      String hql="FROM User u WHERE u.car.model=:model AND u.car.series=:series";
+      TypedQuery<User> query =sessionFactory.getCurrentSession().createQuery(hql, User.class);
+      query.setParameter("model", model);
+      query.setParameter("series", series);
+      return query.getSingleResult();
+   }
 }
